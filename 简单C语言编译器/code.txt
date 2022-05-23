@@ -1,0 +1,28 @@
+int main(){
+   int a[10];
+   int c;
+   int d;
+   int i;
+   struct A
+{
+ int e;
+ char f;
+};
+   c=
+
+1;
+   d=10*(2+3);
+   i=12;
+   while(i>0)
+{
+i--;
+cout i;
+}
+   if(d>c)
+ {
+cout d;
+  }
+  else
+{
+}
+}

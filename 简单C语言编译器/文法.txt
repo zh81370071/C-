@@ -1,0 +1,52 @@
+函数体文法：
+Start -> Function{Function}
+Function -> FType i4 ‘(’ Parameter ‘)’ ‘{‘ Declaration Content ‘}’
+类型文法：
+FType -> ‘void’|Type
+Type -> ‘int’|’real’|’char’
+Parameter -> |’void’|Type Id { ‘,’ Type Id }
+Id -> i4|i4 ‘[‘ i1 ‘]’
+结构体声明文法：
+Declaration -> {|’struct’ i4 ‘{‘ Base_declaration ‘}’ ‘;’|Base_declaration }
+基本类型定义文法：
+Base_declaration -> |{ Type Id { ‘,’ Id } ‘;’ }
+语句块文法：
+Content -> Structure { Structure }
+Structure -> |E ‘;’|If|While|Fun|Cout
+函数调用文法：
+Fun -> i4 ‘(‘ ‘)’ ‘;’|i4 ‘(‘ Assignment { ‘,’ Assignment } ‘)’ ‘;’
+if条件语句文法：
+If -> ‘if’ ‘(‘ Expression ‘)’ ‘{‘ Content ‘}’|
+   ‘if’ ‘(‘ Expression ‘)’ ‘{‘ Content ‘}’ ‘else’ ‘{‘ Content ‘}’
+while循环语句文法：
+While -> ‘while’ ‘(‘ Expression ‘)’ ‘{‘ Content ‘}’
+逗号表达式文法：
+Expression -> Assignment { ‘,’ Assignment }
+赋值表达式文法：
+Assignment -> i4 ‘.’ Id ‘=’ Logical_or | Id ‘=’ Logical_or | Logical_or
+逻辑表达式文法：
+Logical_or -> Logical_and { ‘||’ Logical_and }
+Logical_and -> Inclusive_or { ‘&&’ Inclusive_or }
+Inclusive_or ->Exclusive_or { ‘|’ Exclusive_or }
+Exclusive_or ->And { ‘^’ And }
+And -> Equality { ‘&’ Equality }
+关系表达式文法：
+Equality -> Relational { w0 Relational }
+Relational -> Shift { w1 Shift }
+算术表达式文法：
+Shift -> Additive { w2 Additive }
+Additive -> Multiplicative { w3 Multiplicative }
+Multiplicative -> Unary { w4 Unary }
+前置算符文法：
+Unary -> w5 Postfix | Postfix
+后置算符文法：
+Postfix ->Primary { w6 }
+Primary ->i4|constant| ‘(‘ Expression ‘)’
+其中符号表示：
+w0 -> ‘==’ | ‘!=’
+w1 -> ‘<’ | ‘>’ | ‘<=’ | ‘>=’
+w2 -> ‘<<’ | ‘>>’
+w3 -> ‘+’ | ‘-‘
+w4 -> ‘*’ | ‘/’ | ‘%’
+w5 -> ‘!’ | ‘~’ | ‘++’ | ‘--‘ | ‘sizeof’
+w6 -> ‘++’ | ‘--‘ | ‘[‘ Expression ‘]’ | ‘.’ i4
